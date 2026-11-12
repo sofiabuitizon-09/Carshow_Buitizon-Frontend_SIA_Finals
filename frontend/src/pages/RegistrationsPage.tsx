@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getRegistrations, getSummary } from '../api/registrationsApi'
+import { getRegistrations, getSummary, usingSampleData } from '../api'
 import { useDebounce } from '../hooks/useDebounce'
 import type {
   RegistrationList,
@@ -132,8 +132,11 @@ export function RegistrationsPage() {
             </p>
           </div>
           <p className="inline-flex items-center gap-2 self-start rounded-full border border-[#E0D4BE] bg-[#F4EBDA] px-3 py-1.5 text-xs font-medium text-[#4A3F33] sm:self-auto">
-            <span className="h-2 w-2 rounded-full bg-[#4F7A4A]" aria-hidden="true" />
-            Live from the registrations API
+            <span
+              className={`h-2 w-2 rounded-full ${usingSampleData ? 'bg-[#B4693C]' : 'bg-[#4F7A4A]'}`}
+              aria-hidden="true"
+            />
+            {usingSampleData ? 'Sample data (offline)' : 'Live from the registrations API'}
           </p>
         </header>
 

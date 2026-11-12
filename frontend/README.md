@@ -27,23 +27,23 @@ VITE_API_BASE_URL=http://localhost:5205
 
 ## Sample data or the real API
 
-Both modules export `getRegistrations(query)` and `getSummary()`, so only the import in
-`src/pages/RegistrationsPage.tsx` changes.
-
-Real API:
+The dashboard opens on the bundled sample data, so `npm run dev` shows 28 rows without
+a backend. `.env.development` controls which module is used:
 
 ```
-import { getRegistrations, getSummary } from '../api/registrationsApi'
+VITE_DATA_SOURCE=demo
 ```
 
-Sample data:
-
-```
-import { getRegistrations, getSummary } from '../api/sample-data'
-```
+`demo` reads `src/api/sample-data.ts`; `api` reads the C# endpoints through
+`src/api/registrationsApi.ts`. Both modules expose the same `getRegistrations` and
+`getSummary` functions, and `src/api/index.ts` picks one of them, so the page does not
+change. The header pill reads "Sample data (offline)" in demo mode and "Live from the
+registrations API" in api mode.
 
 The sample module holds 28 registrations and filters, pages and totals them in the
-browser. The API module sends the filters as query parameters to the C# backend.
+browser. The API module sends the filters as query parameters to the C# backend. Its
+records are separate from the ones in the Carillo frontend, so the two projects never
+share the same rows.
 
 ## Checks
 

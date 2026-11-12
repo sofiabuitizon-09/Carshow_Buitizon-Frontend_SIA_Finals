@@ -40,6 +40,18 @@ npm run dev
 The dashboard opens on `http://localhost:5173` and reads the API URL from
 `frontend/.env.development` (`VITE_API_BASE_URL=http://localhost:5205`).
 
+## Frontend data source
+
+The React app starts on its 28 bundled sample registrations, so it can be demonstrated
+without the backend. `frontend/.env.development` holds:
+
+```
+VITE_API_BASE_URL=http://localhost:5205
+VITE_DATA_SOURCE=demo
+```
+
+Set `VITE_DATA_SOURCE=api` and restart the dev server to read the real endpoints.
+
 ## Frontend checks
 
 ```
