@@ -118,7 +118,7 @@ export function RegistrationsPage() {
 
   return (
     <main className="min-h-screen bg-[#FBF8F1]">
-      <div className="mx-auto max-w-[1240px] px-4 py-8 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1240px] px-4 py-8 pb-12 sm:px-6 lg:px-8">
         <header className="flex flex-col gap-3 border-b border-[#E7DCC8] pb-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#8A7C6C]">
@@ -156,7 +156,7 @@ export function RegistrationsPage() {
               <h2 className="text-sm font-semibold text-[#2E2823]">Registrations</h2>
               {isLoading ? (
                 <p className="text-xs text-[#8A7C6C]">Loading registrations…</p>
-              ) : (
+              ) : error ? null : (
                 <p className="text-xs text-[#8A7C6C]">
                   {rowCount} {rowCount === 1 ? 'record' : 'records'}
                 </p>
@@ -179,7 +179,7 @@ export function RegistrationsPage() {
                 <div>
                   <h3 className="text-base font-semibold text-[#2E2823]">Cannot reach the API</h3>
                   <p className="mt-1 max-w-md text-sm text-[#6F6455]">
-                    {error} Make sure the backend is running, then load the dashboard again.
+                    The registrations could not be loaded. Start the backend, then load the dashboard again.
                   </p>
                 </div>
                 <button

@@ -18,7 +18,7 @@ function KpiPlaceholder() {
 }
 
 export function KpiCards({ summary, isLoading }: KpiCardsProps) {
-  if (isLoading || !summary) {
+  if (isLoading) {
     return (
       <section aria-label="Event totals" className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
         {Array.from({ length: 6 }).map((_item, index) => (
@@ -28,16 +28,43 @@ export function KpiCards({ summary, isLoading }: KpiCardsProps) {
     )
   }
 
-  const rate = summary.totalFees > 0 ? Math.round((summary.totalPayments / summary.totalFees) * 100) : 0
+  const rate =
+    summary && summary.totalFees > 0
+      ? `${Math.round((summary.totalPayments / summary.totalFees) * 100)}%`
+      : '—'
 
   return (
     <section aria-label="Event totals" className="grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-6">
-      <KpiCard label="Total registrations" value={String(summary.totalRegistrations)} hint="All entries" />
-      <KpiCard label="Total payments" value={formatPeso(summary.totalPayments)} hint="Collected so far" />
-      <KpiCard label="Uncollected" value={formatPeso(summary.uncollectedPayments)} hint="Still to collect" />
-      <KpiCard label="Confirmed" value={String(summary.confirmed)} hint="Ready to display" />
-      <KpiCard label="Checked in" value={String(summary.checkedIn)} hint="Already on site" />
-      <KpiCard label="Collection rate" value={`${rate}%`} hint={`of ${formatPeso(summary.totalFees)}`} />
+      <KpiCard
+        label="Total registrations"
+        value={summary ? String(summary.totalRegistrations) : '—'}
+        hint="All entries"
+      />
+      <KpiCard
+        label="Total payments"
+        value={summary ? formatPeso(summary.totalPayments) : '—'}
+        hint="Collected so far"
+      />
+      <KpiCard
+        label="Uncollected payments"
+        value={summary ? formatPeso(summary.uncollectedPayments) : '—'}
+        hint="Still to collect"
+      />
+      <KpiCard
+        label="Confirmed"
+        value={summary ? String(summary.confirmed) : '—'}
+        hint="Ready to display"
+      />
+      <KpiCard
+        label="Checked in"
+        value={summary ? String(summary.checkedIn) : '—'}
+        hint="Already on site"
+      />
+      <KpiCard
+        label="Collection rate"
+        value={rate}
+        hint={summary ? `of ${formatPeso(summary.totalFees)}` : 'Not available'}
+      />
     </section>
   )
 }

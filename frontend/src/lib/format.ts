@@ -7,7 +7,7 @@ export function formatPeso(value: number): string {
 
 const dateFormat = new Intl.DateTimeFormat('en-PH', {
   month: 'short',
-  day: '2-digit',
+  day: 'numeric',
   year: 'numeric',
   hour: '2-digit',
   minute: '2-digit',

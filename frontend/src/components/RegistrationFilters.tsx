@@ -102,9 +102,9 @@ export function RegistrationFilters({
           >
             <svg aria-hidden="true" viewBox="0 0 20 20" fill="none" className="h-4 w-4">
               <path
-                d="M4 6h12M8 6V4.5h4V6m-6.5 0 .7 9.2h7.6l.7-9.2"
+                d="M4 10a6 6 0 1 0 2-4.5M4 4v4h4"
                 stroke="currentColor"
-                strokeWidth="1.5"
+                strokeWidth="1.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
